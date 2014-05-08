@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/**
+ * 通用栅格生成器makeGrid
+ * 视觉规范地址：http://demo.alibaba-inc.com/categories/2075/projects/7370/vds/56075
+ * @grid-column-width:11rem;//列宽 单位rem
+ * @grid-gutter-width:2rem;//槽宽
+ * @grid-offset:3rem;//body 2边间距 视觉稿上的列边距
+ * @grid-name:grid; 一般为[grid/grid-thin/grid-fat] grid命名 可选视觉规范上的三种
+ */
+/**
+ * 生成通用栅格（meduim）一般适用于产品首页
+ * @grid-column-width:11rem;//列宽 单位rem
+ * @grid-gutter-width:2rem;//槽宽
+ * @grid-offset:3rem;//body 2边间距 视觉稿上的列边距
+ * @grid-name:grid; 一般为[grid/grid-thin/grid-fat] grid命名 可选视觉规范上的三种
+ */
+.grid {
+  box-sizing: content-box;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin-left: -0.2rem;
+}
+.grid:before,
+.grid:after {
+  content: " ";
+  display: table;
+}
+.grid:after {
+  clear: both;
+}
+.grid [class^="col-"] {
+  margin-left: 0.2rem;
+  float: left;
+}
+.grid .col-1 {
+  width: 1.1rem;
+}
+.grid .col-2 {
+  width: 2.4rem;
+}
+.grid .col-3 {
+  width: 3.7rem;
+}
+.grid .col-4 {
+  width: 5rem;
+}
+.grid .col-5 {
+  width: 6.3rem;
+}
+.grid .col-6 {
+  width: 7.6rem;
+}
+.grid .col-7 {
+  width: 8.9rem;
+}
+.grid .col-8 {
+  width: 10.2rem;
+}
+.grid .col-9 {
+  width: 11.5rem;
+}
+.grid .col-10 {
+  width: 12.8rem;
+}
+.grid .col-11 {
+  width: 14.1rem;
+}
+.grid .col-12 {
+  width: 15.4rem;
+}

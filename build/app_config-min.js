@@ -1,0 +1,1 @@
+$.config({"tbc/km-base":{alias:"tbc/km-base/0.0.4/index"}});

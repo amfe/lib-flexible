@@ -1,0 +1,1 @@
+define("tbc/km-base/0.0.4/global.css",[],function(){$.importStyle('html{overflow-y:scroll}body,html{font-family:sans-serif}body{font-size:.6rem}.clearfix:after,.clearfix:before{content:" ";display:table}.clearfix:after{clear:both}.fn-hide{display:none}.fn-webkit-adjust{-webkit-text-size-adjust:none}.fn-webkit-highlight{-webkit-tap-highlight-color:rgba(0,0,0,0)}')});

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/**
+ * 通用栅格生成器makeGrid
+ * 视觉规范地址：http://demo.alibaba-inc.com/categories/2075/projects/7370/vds/56075
+ * @grid-column-width:11rem;//列宽 单位rem
+ * @grid-gutter-width:2rem;//槽宽
+ * @grid-offset:3rem;//body 2边间距 视觉稿上的列边距
+ * @grid-name:grid; 一般为[grid/grid-thin/grid-fat] grid命名 可选视觉规范上的三种
+ */
+/**
+ * 生成通用栅格（fat）一般适用于产品列表模块
+ * @grid-column-width:9rem;//列宽 单位rem
+ * @grid-gutter-width:4rem;//槽宽
+ * @grid-offset:4rem;//body 2边间距 视觉稿上的列边距
+ * @grid-name:grid; 一般为[grid/grid-thin/grid-fat] grid命名 可选视觉规范上的三种
+ */
+.grid-fat {
+  box-sizing: content-box;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  margin-left: 0rem;
+}
+.grid-fat:before,
+.grid-fat:after {
+  content: " ";
+  display: table;
+}
+.grid-fat:after {
+  clear: both;
+}
+.grid-fat [class^="col-"] {
+  margin-left: 0rem;
+  float: left;
+}
+.grid-fat .col-1 {
+  width: 1.3rem;
+}
+.grid-fat .col-2 {
+  width: 2.6rem;
+}
+.grid-fat .col-3 {
+  width: 3.9rem;
+}
+.grid-fat .col-4 {
+  width: 5.2rem;
+}
+.grid-fat .col-5 {
+  width: 6.5rem;
+}
+.grid-fat .col-6 {
+  width: 7.8rem;
+}
+.grid-fat .col-7 {
+  width: 9.1rem;
+}
+.grid-fat .col-8 {
+  width: 10.4rem;
+}
+.grid-fat .col-9 {
+  width: 11.7rem;
+}
+.grid-fat .col-10 {
+  width: 13rem;
+}
+.grid-fat .col-11 {
+  width: 14.3rem;
+}
+.grid-fat .col-12 {
+  width: 15.6rem;
+}
