@@ -1,5 +1,21 @@
-# km-base kimi UI基础库
+#lib.tbm
+
 含reset、grid、rem基准计算、全局字体等
+
+## 最新版本
+
+**0.1.0**
+
+## 安装依赖
+
+运行 `npm install`，来安装所需的依赖模块。关于NPM的知识，请参见[nodejs](http://nodejs.org/);
+
+## 用Grunt打包
+
+运行 `grunt`，来对项目进行打包。关于Grunt的知识，请参见[gruntjs](http://gruntjs.com/);
+
+
+
 
 ## 手机淘宝栅格系统
 [设计规范地址](http://demo.alibaba-inc.com/categories/2075/projects/7370/vds/56075)、[demo地址](http://groups.alidemo.cn/tbc/m-base/)
@@ -8,11 +24,13 @@
 
 
 ### 栅格使用方法
-#### 第一步：引入base.css和base.js
-	<!-- base.css含reset/grid/global三部分 -->
-	<!-- base.js为单位rem的计算，视觉稿上的1a=0.1rem -->
-	<link href="http://g.tbcdn.cn/tbc/m-base/0.0.5/index-min.css" rel="styleSheet" type="text/css"/>
-    <script src="http://g.tbcdn.cn/tbc/m-base/0.0.5/index-min.js"></script>
+#### 第一步：引入tbm.css和tbm.js
+	
+	<!-- tbm.css含reset/grid/global三部分 -->
+	<!-- tbm.js为单位rem的计算，视觉稿上的1a=0.1rem -->
+	<script src="http://g.tbcdn.cn/mtb/lib-tbm/0.1.0/tbm.js"></script>
+	<link href="http://g.tbcdn.cn/mtb/lib-tbm/0.1.0/tbm.css" rel="styleSheet" type="text/css"/>
+    
 
 #### 第二步：根据视觉设计，选择栅格
 选择其中一种[栅格](http://groups.alidemo.cn/tbc/m-base/)，grid/grid-thin/grid-fat，它们定义的槽宽列宽不一样，以适应不同产品的不同模块，一般为[grid](http://demo.alibaba-inc.com/categories/2075/projects/7370/vds/56075)
