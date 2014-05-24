@@ -47,19 +47,23 @@ module.exports = function(grunt) {
 
         less: {
             options: {
-                paths: ['<%= srcPath %>']
+                paths: ['<%= assetsPath %>']
             },
 
             main: {
                 files: [{
                     expand: true,
-                    cwd: '<%= srcPath %>',
-
+                    cwd: '<%= assetsPath %>',
                     src: ['<%= name %>.less'],
-
                     dest: '<%= distPath %>',
                     ext: '.debug.css'
                 }]
+            },
+
+            fonts: {
+                files: {
+                    '<%= distPath%>/fonts.debug.css': ['<%= assetsPath%>/fonts.less']
+                }
             }
         },
 

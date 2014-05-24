@@ -23,7 +23,7 @@
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-depconcat": "~0.2.0",
-        "grunt-depcombo": "~0.1.2",
+        "grunt-depcombo": "~0.2.2",
         "grunt-contrib-copy": "~0.4.1",
         
         "grunt-contrib-less": "~0.6.4",

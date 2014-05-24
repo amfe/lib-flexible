@@ -14,9 +14,6 @@
 
 运行 `grunt`，来对项目进行打包。关于Grunt的知识，请参见[gruntjs](http://gruntjs.com/);
 
-
-
-
 ## 手机淘宝栅格系统
 [设计规范地址](http://demo.alibaba-inc.com/categories/2075/projects/7370/vds/56075)、[demo地址](http://groups.alidemo.cn/tbc/m-base/)
 ![](http://gtms01.alicdn.com/tps/i1/T16vvjFMVXXXcxUGDM-687-343.png)
