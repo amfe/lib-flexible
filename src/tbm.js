@@ -9,7 +9,7 @@
     }
 
     function setUnitA(){
-        rem = document.documentElement.clientWidth / 16;
+        rem = window.innerWidth / 16;
         document.documentElement.style.fontSize = rem + 'px';
     }
 
