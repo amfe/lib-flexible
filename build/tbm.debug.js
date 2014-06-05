@@ -14,11 +14,7 @@
         h = setTimeout(setUnitA, 300);
     }, false);
 
+    document.documentElement.setAttribute('data-dpr', dpr);
     document.write('<meta name="viewport" content="initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no"/>');
-    document.addEventListener('DOMContentLoaded', function(){
-        setUnitA();
-        document.body.setAttribute('data-dpr', dpr);
-        document.body.style.fontSize = 12 * dpr + 'px';
-    }, false);
-    
+    setUnitA();
 })(window);
