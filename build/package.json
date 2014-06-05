@@ -1,12 +1,15 @@
 {
     "name": "lib.tbm",
     "description": "a css library",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "homepage": "http://gitlab.alibaba-inc.com/mtb/lib-tbm",
-    "author": {
+    "author": [{
         "name": "hanquan",
         "email": "hanquan.csf@taobao.com"
-    },
+    },{
+        "name": "zhuxun",
+        "email": "zhuxun.jb@taobao.com"
+    }],
     "repository": {
         "type": "git",
         "url": "git@gitlab.alibaba-inc.com:mtb/lib-tbm.git"

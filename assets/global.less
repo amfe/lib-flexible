@@ -5,21 +5,25 @@
  * 移动端上不会有以上问题，因为滚动条tap时才出现，但加overflow-y:scroll对移动端也没有影响。 
  */
 html {
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 html, body {
-	font-family: sans-serif;
+    font-family: sans-serif;
 }
 
-body {
-	font-size: 0.6rem;
+[data-dpr="1"] body {
+    font-size: 12px;
+}
+
+[data-dpr="2"] body {
+    font-size: 24px;
 }
 
 .clearfix:before,
 .clearfix:after{
-	content: " ";
-		display: table;
+    content: " ";
+        display: table;
 }
 
 .clearfix:after {
@@ -30,14 +34,3 @@ body {
 .fn-hide {
     display: none;
 }
-
-/* 严格控制字体缩放 */
-
-.fn-webkit-adjust {
-    -webkit-text-size-adjust: none;
-}
-
-/* 点击色块的问题 */
-.fn-webkit-highlight {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-} 

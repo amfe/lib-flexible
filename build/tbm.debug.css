@@ -11,8 +11,11 @@ html,
 body {
   font-family: sans-serif;
 }
-body {
-  font-size: 0.6rem;
+[data-dpr="1"] body {
+  font-size: 12px;
+}
+[data-dpr="2"] body {
+  font-size: 24px;
 }
 .clearfix:before,
 .clearfix:after {
@@ -26,14 +29,6 @@ body {
 .fn-hide {
   display: none;
 }
-/* 严格控制字体缩放 */
-.fn-webkit-adjust {
-  -webkit-text-size-adjust: none;
-}
-/* 点击色块的问题 */
-.fn-webkit-highlight {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 @charset "utf-8";
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 /* ref: http://www.zhihu.com/question/21093147/answer/17158909 */
@@ -42,6 +37,11 @@ html {
   background: #fff;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+}
+html * {
+  outline: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body,

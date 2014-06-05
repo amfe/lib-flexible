@@ -4,7 +4,7 @@
 
 ## 最新版本
 
-**0.1.2**
+**0.1.3**
 
 ## 安装依赖
 
@@ -22,11 +22,11 @@
 
 ### 栅格使用方法
 #### 第一步：引入tbm.css和tbm.js
-	
-	<!-- tbm.css含reset/grid/global三部分 -->
-	<!-- tbm.js为单位rem的计算，视觉稿上的1a=0.1rem -->
-	<script src="http://g.tbcdn.cn/mtb/lib-tbm/0.1.0/tbm.js"></script>
-	<link href="http://g.tbcdn.cn/mtb/lib-tbm/0.1.0/tbm.css" rel="styleSheet" type="text/css"/>
+    
+    <!-- tbm.css含reset/grid/global三部分 -->
+    <!-- tbm.js为单位rem的计算，视觉稿上的1a=0.1rem -->
+    <script src="http://g.tbcdn.cn/mtb/lib-tbm/{{version}}/tbm.js"></script>
+    <link href="http://g.tbcdn.cn/mtb/lib-tbm/{{version}}/tbm.css" rel="styleSheet" type="text/css"/>
     
 
 #### 第二步：根据视觉设计，选择栅格
@@ -34,30 +34,30 @@
 ![](http://gtms02.alicdn.com/tps/i2/T1IJq.FPlbXXbk1_b6-471-42.png)
 如选择grid三栏布局，一栏跨4列，则由3个col-4组成，[点此查看grid-thin完整栅格](http://groups.alidemo.cn/tbc/m-base/#grid-thin)
 
-	<!-- .col-*的父节点要为.grid* -->
-	<div class="grid">
-	    <div class="col-4"></div>
-	    <div class="col-4"></div>
-	    <div class="col-4"></div>
-	</div>
+    <!-- .col-*的父节点要为.grid* -->
+    <div class="grid">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
 
 ![](http://gtms03.alicdn.com/tps/i3/T1qP6dFS8XXXbhtPf9-479-45.png)
 如选择grid-thin两栏布局，一栏跨6列，则由2个col-6组成，[点此查看grid完整栅格](http://groups.alidemo.cn/tbc/m-base/#grid)
 
-	<div class="grid-thin">
-	    <div class="col-6"></div>
-	    <div class="col-6"></div>
-	</div>
+    <div class="grid-thin">
+        <div class="col-6"></div>
+        <div class="col-6"></div>
+    </div>
 
 ![](http://gtms02.alicdn.com/tps/i2/TB1_b6iFFXXXXaPXXXXR7aVSVXX-455-40.png)
 如选择grid-fat四栏布局，一栏跨3列，则由4个col-3组成，[点此查看grid-fat完整栅格](http://groups.alidemo.cn/tbc/m-base/#grid-fat)
 
-	<div class="grid-fat">
-	    <div class="col-3"></div>
-	    <div class="col-3"></div>
-	    <div class="col-3"></div>
-	    <div class="col-3"></div>
-	</div>
+    <div class="grid-fat">
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
 
 
 ## 视觉单位a使用方法
@@ -65,25 +65,43 @@
 ![](http://gtms02.alicdn.com/tps/i2/T1QyYjFPNXXXbAvxbX-665-131.png)
 大致实现如下：
 
-	<div class="grid-fat">
-		<div class="col-6"><div class="list">列表</div></div>
-		<div class="col-6"><div class="info">信息</div></div>
-	</div>
-	<style>
-	.list {
-		padding-left: 0.2rem
-	}
-	.info {
-		padding-right: 0.2rem;
-	}
-	</style>
+    <div class="grid-fat">
+        <div class="col-6"><div class="list">列表</div></div>
+        <div class="col-6"><div class="info">信息</div></div>
+    </div>
+    <style>
+    .list {
+        padding-left: 0.2rem
+    }
+    .info {
+        padding-right: 0.2rem;
+    }
+    </style>
+
+## 字体不使用rem的方法
+
+在body上会有一个属性`data-dpr`，值为当前网页的dpr实际值，包括1和2，未来可能有1.5和3。
+
+字体的大小不能用rem作为单位，仍旧采用px为单位。所以对于字体的设置，需要用data-dpr属性来区分不同dpr的大小。例如：
+
+    div {
+        width: 1rem; 
+        height: 0.4rem;
+    }
+    [data-dpr="1"] div {
+        font-size: 12px;
+    }
+    [data-dpr="2"] div {
+        font-size: 24px;
+    }
+
 ## 常见疑问
 
-* 单位a的可能实现方式，为什么选择用rem实现？
+### 单位a的可能实现方式，为什么选择用rem实现？
 [相关讨论](http://gitlab.alibaba-inc.com/mtb/lib-tbm/wikis/unit-a)
 
-* 为什么1a=0.1rem，而不是1a=1rem？
+### 为什么1a=0.1rem，而不是1a=1rem？
 1rem=1a; a=320/160=2px; 意味着html节点的font-size等于2px，在chrome(含mobile版chrome)下面会被重置为最小字号12px；为了解决这个问题，扩大10倍，1rem=10a；这样html的font-size都能大于12px，所以a=0.1rem。
 
-* 栅格系统 VS 图片？
+### 栅格系统 VS 图片？
 正在申请符合手机淘宝栅格系统的图片尺寸，[相关讨论](http://gitlab.alibaba-inc.com/mtb/lib-tbm/issues/1)
