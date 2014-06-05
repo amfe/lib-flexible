@@ -1,6 +1,5 @@
 ;(function(win) {
     var h;
-    var rem;
     var scale = 1;
     var dpr = 1;
     if (win.devicePixelRatio === 2 && win.navigator.appVersion.match(/iphone/gi)) {
@@ -9,17 +8,20 @@
     }
 
     function setUnitA(){
-        rem = window.innerWidth / 16;
-        document.documentElement.style.fontSize = rem + 'px';
+        clearTimeout(h);
+        h = setTimeout(function() {
+            win.rem = window.innerWidth / 16;
+            document.documentElement.style.fontSize = win.rem + 'px';
+        }, 300);
     }
 
     win.dpr = dpr;
-    win.rem = rem;
-    win.addEventListener('resize', function(){
-        clearTimeout(h);
-        h = setTimeout(setUnitA, 300);
-    },false);
+    win.addEventListener('resize', setUnitA, false);
 
     document.write('<meta name="viewport" content="initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no"/>');
+    document.addEventListener('DOMContentLoaded', function(){
+        document.body.setAttribute('data-dpr', dpr);
+        document.body.style.fontSize = 12 * dpr + 'px';
+    }, false);
     setUnitA();
 })(window);
