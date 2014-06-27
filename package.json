@@ -1,13 +1,13 @@
 {
     "name": "lib.tbm",
-    "description": "a css library",
-    "version": "0.1.3",
+    "description": "手淘高清方案，栅格方案",
+    "version": "0.1.4",
     "homepage": "http://gitlab.alibaba-inc.com/mtb/lib-tbm",
     "author": [{
-        "name": "hanquan",
+        "name": "寒泉",
         "email": "hanquan.csf@taobao.com"
     },{
-        "name": "zhuxun",
+        "name": "渚薰",
         "email": "zhuxun.jb@taobao.com"
     }],
     "repository": {
