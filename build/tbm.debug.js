@@ -2,10 +2,12 @@
     var h;
     var dpr = win.navigator.appVersion.match(/iphone/gi)?win.devicePixelRatio:1;
     var scale = 1 / dpr;
+    var docEl = document.documentElement;
+    var metaEl = document.createElement('meta');
 
     function setUnitA(){
-        win.rem = window.innerWidth / 16;
-        document.documentElement.style.fontSize = win.rem + 'px';
+        win.rem = docEl.getBoundingClientRect().width / 16;
+        docEl.style.fontSize = win.rem + 'px';
     }
 
     win.dpr = dpr;
@@ -13,8 +15,23 @@
         clearTimeout(h);
         h = setTimeout(setUnitA, 300);
     }, false);
+    win.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            clearTimeout(h);
+            h = setTimeout(setUnitA, 300);
+        }
+    }, false);
 
-    document.documentElement.setAttribute('data-dpr', dpr);
-    document.write('<meta name="viewport" content="initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no"/>');
+    docEl.setAttribute('data-dpr', dpr);
+    metaEl.setAttribute('name', 'viewport');
+    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    if (docEl.firstElementChild) {
+        docEl.firstElementChild.appendChild(metaEl);    
+    } else {
+        var wrap = document.createElement('div');
+        wrap.appendChild(metaEl);
+        document.write(wrap.innerHTML);
+    }
+    
     setUnitA();
 })(window);
