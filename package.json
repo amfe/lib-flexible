@@ -1,0 +1,21 @@
+{
+    "name": "lib.flexible",
+    "description": "可伸缩布局方案",
+    "version": "1.0rc1",
+    "homepage": "https://github.com/amfe/lib.flexible",
+    "author": "terrykingcha",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/amfe/lib.flexible.git"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "/blob/master/LICENSE"
+        }
+    ],
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "dependencies": {}
+}

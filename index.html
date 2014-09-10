@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <link href="flexible.css" rel="styleSheet" type="text/css"/>
+    <script src="flexible.js"></script>
+    <title>可伸缩布局方案</title>
+    <style type="text/css">
+    html {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    h1,h2 {
+        padding: 10px;
+    }
+    [data-dpr="1"] h1, [data-dpr="1"] h2 {
+        font-size: 16px;
+    }
+    [data-dpr="1.5"] h1, [data-dpr="1.5"] h2 {
+        font-size: 24px;
+    }
+    [data-dpr="2"] h1, [data-dpr="2"] h2 {
+        font-size: 32px;
+    }
+    [data-dpr="3"] h1, [data-dpr="3"] h2 {
+        font-size: 48px;
+    }
+
+    p {
+        padding: 0 0 0.1rem 0.3rem;
+        color: #aaa;
+    }
+    [data-dpr="1"] p, [data-dpr="1"] p {
+        font-size: 12px;
+    }
+    [data-dpr="1.5"] p, [data-dpr="1.5"] p {
+        font-size: 18px;
+    }
+    [data-dpr="2"] p, [data-dpr="2"] p {
+        font-size: 24px;
+    }
+    [data-dpr="3"] p, [data-dpr="3"] p {
+        font-size: 36px;
+    }
+
+    .grid > div,.grid-thin > div,.grid-fat > div {
+        height:1rem;
+        margin-bottom: 0.3rem;
+        text-align: center;
+        color: #fff;
+    }
+    
+    div[class^="col-"] > div {
+        margin-top: 0.04rem;
+    }
+
+    .grid>div {
+        background-color: rgba(242,234,255,0.8);
+        background-color: rgba(96,125,255,0.85);
+    }
+    .grid-thin>div {
+        background-color: rgba(241,149,36,0.85);
+    }
+    .grid-fat>div {
+        background-color: rgba(228,80,66,0.85);
+        outline: 1px dashed #333;
+    }
+    .grid-fat-wrap .bg>div {
+        outline: 1px solid #fff;
+    }
+    .grid-thin-wrap, .grid-wrap, .grid-fat-wrap {
+        position: relative;
+        background-color: rgba(241,149,36, 0.2);
+        background-color: rgba(0,0,0, 0.05);
+        padding-top: 0.4rem;
+    }
+
+    .grid-thin-wrap .bg,.grid-wrap .bg,.grid-fat-wrap .bg {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+    }
+
+    .grid-thin-wrap .bg > div[class^="col-"],
+    .grid-wrap .bg > div[class^="col-"],
+    .grid-fat-wrap .bg > div[class^="col-"]{
+        height: 14.7rem;
+    }
+
+    .grid-thin-wrap .bg>div,
+    .grid-wrap .bg>div,
+    .grid-fat-wrap .bg>div{
+        background-color: rgba(0,0,0, 0.15);
+    }
+    </style>
+</head>
+
+<body>
+    <h1>可伸缩布局方案</h1>
+    <p>不管设备的物理宽度和分辨率，将整个屏幕分为160份，即总宽度160a，再应用12列栅格系统；宽640时，a=4px，1a=0.1rem，1rem=40px</p>
+    <h2 id="grid-thin">1.通用栅格(thin)</h2>
+    <p>公式 640=(9a+4a)n-4a+8a</p>
+    <p>列宽9a，槽宽4a，列数n=12，列边距4a</p>
+    <div class="grid-thin-wrap">
+    <div class="grid-thin">
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+    </div>
+
+    <div class="grid-thin">
+        <div class="col-3"><div class="info">col-3</div><div class="a">35a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">35a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">35a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">35a</div></div>
+    </div> 
+
+    <div class="grid-thin">
+        <div class="col-4"><div class="info">col-4</div><div class="a">48a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">48a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">48a</div></div>
+    </div> 
+    <div class="grid-thin">
+        <div class="col-6"><div class="info">col-6</div><div class="a">74a</div></div>
+        <div class="col-6"><div class="info">col-6</div><div class="a">74a</div></div>
+    </div>
+
+    <div class="grid-thin">
+        <div class="col-12"><div class="info">col-12</div><div class="a">152a</div></div>
+    </div>
+
+    <div class="grid-thin">
+        <div class="col-11"><div class="info">col-11</div><div class="a">139a</div></div>
+        <div class="col-1"><div class="info">col-1</div><div class="a">9a</div></div>
+    </div>
+
+    <div class="grid-thin">
+        <div class="col-10"><div class="info">col-10</div><div class="a">126a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+    </div>
+    
+    <div class="grid-thin">
+        <div class="col-5"><div class="info">col-5</div><div class="a">61a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">61a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">22a</div></div>
+    </div>
+    
+    <div class="grid-thin">
+        <div class="col-9"><div class="info">col-9</div><div class="a">113a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">35a</div></div>
+    </div>
+    <div class="grid-thin">
+        <div class="col-8"><div class="info">col-9</div><div class="a">100a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">48a</div></div>
+    </div>
+    <div class="grid-thin">
+        <div class="col-7"><div class="info">col-7</div><div class="a">86a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">61a</div></div>
+    </div>
+
+    <div class="grid-thin bg">
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+</div>
+    <h2 id="grid">2.通用栅格(meduim)</h2>
+    <p>公式 640=(11a+2a)n-2a+6a</p>
+    <p>列宽11a，槽宽2a，列数n=12，列边距6a</p>
+    <div class="grid-wrap">
+    <div class="grid">
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+    </div>
+    <div class="grid">
+        <div class="col-3"><div class="info">col-3</div><div class="a">37a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">37a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">37a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">37a</div></div>
+    </div> 
+
+    <div class="grid">
+        <div class="col-4"><div class="info">col-4</div><div class="a">50a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">50a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">50a</div></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-6"><div class="info">col-6</div><div class="a">76a</div></div>
+        <div class="col-6"><div class="info">col-6</div><div class="a">76a</div></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-12"><div class="info">col-6</div><div class="a">154a</div></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-11"><div class="info">col-11</div><div class="a">139a</div></div>
+        <div class="col-1"><div class="info">col-1</div><div class="a">11a</div></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-10"><div class="info">col-10</div><div class="a">128a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+    </div>
+    
+    <div class="grid">
+        <div class="col-5"><div class="info">col-5</div><div class="a">63a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">63a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">24a</div></div>
+    </div>
+    
+    <div class="grid">
+        <div class="col-9"><div class="info">col-9</div><div class="a">115a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">37a</div></div>
+    </div>
+    <div class="grid">
+        <div class="col-8"><div class="info">col-8</div><div class="a">102a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">50a</div></div>
+    </div>
+    <div class="grid">
+        <div class="col-7"><div class="info">col-7</div><div class="a">89a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">63a</div></div>
+    </div>
+    <div class="grid bg">
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+<h2 id="grid-fat">3.通用栅格(fat)</h2>
+<p>公式 640=(13a+0a)n-0a+4a</p>
+<p>列宽13a，槽宽0，列数n=12，列边距4a</p>
+<div class="grid-fat-wrap">
+    <div class="grid-fat">
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+    </div>
+    <div class="grid-fat">
+        <div class="col-3"><div class="info">col-3</div><div class="a">39a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">39a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">39a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">39a</div></div>
+    </div> 
+
+    <div class="grid-fat">
+        <div class="col-4"><div class="info">col-4</div><div class="a">52a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">52a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">52a</div></div>
+    </div> 
+    <div class="grid-fat">
+        <div class="col-6"><div class="info">col-6</div><div class="a">78a</div></div>
+        <div class="col-6"><div class="info">col-6</div><div class="a">78a</div></div>
+    </div>
+
+    <div class="grid-fat">
+        <div class="col-12"><div class="info">col-12</div><div class="a">156a</div></div>
+    </div>
+
+    <div class="grid-fat">
+        <div class="col-11"><div class="info">col-11</div><div class="a">143a</div></div>
+        <div class="col-1"><div class="info">col-1</div><div class="a">13a</div></div>
+    </div>
+
+    <div class="grid-fat">
+        <div class="col-10"><div class="info">col-10</div><div class="a">130a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+    </div>
+    
+    <div class="grid-fat">
+        <div class="col-5"><div class="info">col-5</div><div class="a">65a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">65a</div></div>
+        <div class="col-2"><div class="info">col-2</div><div class="a">26a</div></div>
+    </div>
+    
+    <div class="grid-fat">
+        <div class="col-9"><div class="info">col-9</div><div class="a">117a</div></div>
+        <div class="col-3"><div class="info">col-3</div><div class="a">39a</div></div>
+    </div>
+    <div class="grid-fat">
+        <div class="col-8"><div class="info">col-8</div><div class="a">104a</div></div>
+        <div class="col-4"><div class="info">col-4</div><div class="a">52a</div></div>
+    </div>
+    <div class="grid-fat">
+        <div class="col-7"><div class="info">col-7</div><div class="a">91a</div></div>
+        <div class="col-5"><div class="info">col-5</div><div class="a">65a</div></div>
+    </div>
+    <div class="grid-fat bg">
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+</div>
+</body>
+</html>
