@@ -4,7 +4,7 @@
 
 ## 最新版本
 
-**0.1.4**
+**0.1.5**
 
 ## 安装依赖
 
@@ -96,6 +96,13 @@
     }
 
 ## 常见疑问
+
+### 如何手动设置meta标签
+
+只需要在引入`tbm.js`之前，输出meta标签即可，例如：
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<script src="http://g.tbcdn.cn/mtb/lib-tbm/{{version}}/tbm.js"></script>
 
 ### 单位a的可能实现方式，为什么选择用rem实现？
 [相关讨论](http://gitlab.alibaba-inc.com/mtb/lib-tbm/wikis/unit-a)
