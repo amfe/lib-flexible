@@ -21,11 +21,11 @@
         var dpr = win.devicePixelRatio;
         if (isAndroid) {
             // 安卓下，对于3或2.5的屏，用2倍的方案，其余用1倍方案
-            if (dpr > 2) {
-                dpr = 2;    
-            } else {
+            // if (dpr > 2) {
+            //     dpr = 2;    
+            // } else {
                 dpr = 1;
-            }
+            //}
         } else if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
             if (dpr >= 2) {
