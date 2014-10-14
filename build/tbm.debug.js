@@ -1,6 +1,7 @@
 ;(function(win) {
     var docEl = document.documentElement;
     var metaEl = document.querySelector('meta[name="viewport"]');
+    var fontEl = document.createElement('style');
     var dpr;
     var scale;
     var tid;
@@ -15,7 +16,24 @@
     }
 
     if (!dpr && !scale) {
-        dpr = win.navigator.appVersion.match(/iphone/gi)?win.devicePixelRatio:1;
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var dpr = win.devicePixelRatio;
+        if (isAndroid) {
+            // 安卓下，对于3或2.5的屏，用2倍的方案，其余用1倍方案
+            if (dpr > 2) {
+                dpr = 2;    
+            } else {
+                dpr = 1;
+            }
+        } else if (isIPhone) {
+            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+            if (dpr >= 2) {
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        }
         scale = 1 / dpr;    
     }
 
@@ -25,7 +43,8 @@
         metaEl.setAttribute('name', 'viewport');
         metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
         if (docEl.firstElementChild) {
-            docEl.firstElementChild.appendChild(metaEl);    
+            docEl.firstElementChild.appendChild(metaEl);
+            docEl.firstElementChild.appendChild(fontEl)
         } else {
             var wrap = document.createElement('div');
             wrap.appendChild(metaEl);
@@ -34,8 +53,9 @@
     }
 
     function setUnitA(){
-        win.rem = docEl.getBoundingClientRect().width / 16;
-        docEl.style.fontSize = win.rem + 'px';
+        var width = docEl.getBoundingClientRect().width;
+        win.rem = width / 16;
+        fontEl.innerHTML = 'html{font-size:' + win.rem + 'px}body{font-size:' + parseInt(12 * (width / 320)) + 'px}';
     }
 
     win.dpr = dpr;

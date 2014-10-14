@@ -11,12 +11,6 @@ html,
 body {
   font-family: sans-serif;
 }
-[data-dpr="1"] body {
-  font-size: 12px;
-}
-[data-dpr="2"] body {
-  font-size: 24px;
-}
 .clearfix:before,
 .clearfix:after {
   content: " ";
