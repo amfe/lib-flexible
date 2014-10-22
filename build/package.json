@@ -1,45 +1,47 @@
 {
-    "name": "lib.flexible",
-    "description": "移动端自适应方案",
-    "version": "0.2.0",
-    "homepage": "http://gitlab.alibaba-inc.com/mtb/lib-flexible",
-    "author": [{
-        "name": "寒泉",
-        "email": "hanquan.csf@taobao.com"
-    },{
-        "name": "渚薰",
-        "email": "zhuxun.jb@taobao.com"
-    }],
-    "repository": {
-        "type": "git",
-        "url": "git@gitlab.alibaba-inc.com:mtb/lib-flexible.git"
+  "name": "lib.flexible",
+  "description": "移动端自适应方案",
+  "version": "0.2.1",
+  "homepage": "http://gitlab.alibaba-inc.com/mtb/lib-flexible",
+  "author": [
+    {
+      "name": "寒泉",
+      "email": "hanquan.csf@taobao.com"
     },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "/blob/master/LICENSE-MIT"
-        }
-    ],
-    "engines": {
-        "node": ">= 0.8.0"
-    },
-    "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-depconcat": "~0.2.0",
-        "grunt-depcombo": "~0.2.2",
-        "grunt-contrib-copy": "~0.4.1",
-        "grunt-contrib-less": "~0.6.4",
-        "grunt-contrib-cssmin": "~0.6.0",
-        "grunt-contrib-uglify": "~0.2.0",
-        "grunt-contrib-watch": "~0.4.0",
-        "grunt-contrib-clean": "~0.5.0"
-    },
-    "dependencies": {},
-    "combo": {
-        
-    },
-    "keywords": [
-        "lib",
-        "tbm"
-    ]
+    {
+      "name": "渚薰",
+      "email": "zhuxun.jb@taobao.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:mtb/lib-flexible.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-css2js": "^0.2.4",
+    "grunt-depcombo": "^0.2.3",
+    "grunt-depconcat": "^0.2.1"
+  },
+  "dependencies": {},
+  "combo": {},
+  "keywords": [
+    "lib",
+    "tbm"
+  ]
 }
