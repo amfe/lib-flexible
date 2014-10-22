@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        name: 'tbm',
+        name: 'flexible',
         srcPath: 'src',
         assetsPath: 'assets',
         distPath: 'build',
@@ -129,12 +129,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-
     grunt.loadNpmTasks('grunt-contrib-watch');
-
 
     grunt.registerTask('dist', ['clean', 'copy', 'depconcat', 'uglify', 'less', 'cssmin', 'depcombo']);
     grunt.registerTask('dev', ['watch']);
