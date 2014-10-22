@@ -105,8 +105,8 @@
 
 只需要在引入`flexible.js`之前，输出meta标签即可，例如：
 
-<meta name="flexible" data-dpr="2" />
-<script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.js"></script>
+    <meta name="flexible" data-dpr="2" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.js"></script>
 
 ### 强制设置rem单位的方法
 
