@@ -4,7 +4,7 @@
 
 ## 最新版本
 
-**0.2.1**
+**0.2.2**
 
 ## 安装依赖
 
@@ -84,17 +84,16 @@
 
 ## 字体不使用rem的方法
 
-在body上会有一个属性`data-dpr`，值为当前网页的dpr实际值，包括1和2。
+在html上会有一个属性`data-dpr`，值为当前网页的dpr实际值，包括1和2。
 
 字体的大小不能用rem作为单位，仍旧采用px为单位。所以对于字体的设置，需要用data-dpr属性来区分不同dpr的大小。例如：
 
     div {
         width: 1rem; 
         height: 0.4rem;
+        font-size: 12px; // 默认写上dpr为1的fontSize
     }
-    [data-dpr="1"] div {
-        font-size: 12px;
-    }
+    
     [data-dpr="2"] div {
         font-size: 24px;
     }
@@ -105,7 +104,7 @@
 
 只需要在引入`flexible.js`之前，输出meta标签即可，例如：
 
-<meta name="flexible" data-dpr="2" />
+<meta name="flexible" content="initial-dpr=2" />
 <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.js"></script>
 
 ### 强制设置rem单位的方法

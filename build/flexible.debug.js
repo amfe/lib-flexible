@@ -15,26 +15,29 @@
             dpr = parseInt(1 / scale);
         }
     } else if (flexibleEl) {
-        dpr = parseInt(flexibleEl.getAttribute('data-dpr'));
-        scale = parseFloat((1 / dpr).toFixed(2));
+        var match = flexibleEl.getAttribute('content').match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+        if (match) {
+            dpr = parseFloat(match[2]);
+            scale = parseFloat((1 / dpr).toFixed(2));    
+        }        
     }
 
     if (!dpr && !scale) {
         var isAndroid = win.navigator.appVersion.match(/android/gi);
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
         var dpr = win.devicePixelRatio;
-        if (isAndroid) {
-            // 安卓下，仍旧使用1倍的方案
-            dpr = 1;
-        } else if (isIPhone) {
+        if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
             if (dpr >= 2) {
                 dpr = 2;
             } else {
                 dpr = 1;
             }
+        } else {
+            // 其他设备下，仍旧使用1倍的方案
+            dpr = 1;
         }
-        scale = 1 / dpr;    
+        scale = 1 / dpr;
     }
 
     docEl.setAttribute('data-dpr', dpr);
