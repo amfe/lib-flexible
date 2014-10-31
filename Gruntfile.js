@@ -86,7 +86,7 @@ module.exports = function(grunt) {
         css2js: {
             main: {
                 files: {
-                    '<%= distPath %>/<%= name %>_css.js': ['<%= distPath %>/<%= name %>.css']
+                    '<%= distPath %>/<%= name %>_css.debug.js': ['<%= distPath %>/<%= name %>.css']
                 }
             }
         },
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('dist', ['clean', 'copy', 'depconcat', 'uglify', 'less', 'cssmin', 'css2js', 'depcombo']);
+    grunt.registerTask('dist', ['clean', 'copy', 'depconcat', 'less', 'cssmin', 'css2js', 'uglify', 'depcombo']);
     grunt.registerTask('dev', ['watch']);
 
     grunt.registerTask('default', ['dist']);

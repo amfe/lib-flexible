@@ -28,7 +28,9 @@
         var dpr = win.devicePixelRatio;
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (dpr >= 2) {
+            if (dpr >= 3) {
+                dpr = 3;
+            } else if (dpr >= 2){
                 dpr = 2;
             } else {
                 dpr = 1;
