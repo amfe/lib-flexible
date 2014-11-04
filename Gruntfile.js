@@ -60,6 +60,12 @@ module.exports = function(grunt) {
                 }]
             },
 
+            grid: {
+                files: {
+                    '<%= distPath%>/grid.debug.css': ['<%= assetsPath%>/grid.less']
+                }
+            },
+
             fonts: {
                 files: {
                     '<%= distPath%>/fonts.debug.css': ['<%= assetsPath%>/fonts.less']

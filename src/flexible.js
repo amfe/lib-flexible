@@ -61,7 +61,7 @@
         if (width / dpr > 540) {
             width = 540 * dpr;
         }
-        win.rem = width / 16;
+        win.rem = width / 10;
         docEl.style.fontSize = win.rem + 'px';
     }
 
