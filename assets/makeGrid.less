@@ -9,9 +9,7 @@
  * @grid-name:grid; 一般为[grid/grid-thin/grid-fat] grid命名 可选视觉规范上的三种
  */
 
-.makeGrid(@grid-column-width, @grid-gutter-width, @grid-offset, @grid-name:grid) {
-	@grid-columns: 12;
-
+.makeGrid(@grid-column-width, @grid-gutter-width, @grid-offset, @grid-name:grid, @grid-columns:12) {
 	.@{grid-name} {
 		box-sizing:content-box;
 	    padding-left: @grid-offset;
