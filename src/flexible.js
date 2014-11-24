@@ -1,36 +1,44 @@
-;(function(win) {
+;(function(win, lib) {
     var doc = win.document;
     var docEl = doc.documentElement;
     var metaEl = doc.querySelector('meta[name="viewport"]');
     var flexibleEl = doc.querySelector('meta[name="flexible"]');
-    var dpr;
-    var scale;
+    var dpr = 0;
+    var scale = 0;
     var tid;
+    var flexible = lib.flexible || (lib.flexible = {});
     
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');
-        var match = metaEl.getAttribute('content').match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+        var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
         if (match) {
             scale = parseFloat(match[2]);
             dpr = parseInt(1 / scale);
         }
     } else if (flexibleEl) {
-        var match = flexibleEl.getAttribute('content').match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
-        if (match) {
-            dpr = parseFloat(match[2]);
-            scale = parseFloat((1 / dpr).toFixed(2));    
-        }        
+        var content = flexibleEl.getAttribute('content');
+        if (content) {
+            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[2]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[2]);
+            }
+        }
     }
 
     if (!dpr && !scale) {
         var isAndroid = win.navigator.appVersion.match(/android/gi);
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
-        var dpr = win.devicePixelRatio;
+        var devicePixelRatio = win.devicePixelRatio;
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (dpr >= 3) {
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
                 dpr = 3;
-            } else if (dpr >= 2){
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
                 dpr = 2;
             } else {
                 dpr = 1;
@@ -56,24 +64,24 @@
         }
     }
 
-    function setUnitA(){
+    function refreshRem(){
         var width = docEl.getBoundingClientRect().width;
         if (width / dpr > 540) {
             width = 540 * dpr;
         }
-        win.rem = width / 10;
-        docEl.style.fontSize = win.rem + 'px';
+        var rem = width / 10;
+        docEl.style.fontSize = rem + 'px';
+        flexible.rem = win.rem = rem;
     }
 
-    win.dpr = dpr;
     win.addEventListener('resize', function() {
         clearTimeout(tid);
-        tid = setTimeout(setUnitA, 300);
+        tid = setTimeout(refreshRem, 300);
     }, false);
     win.addEventListener('pageshow', function(e) {
         if (e.persisted) {
             clearTimeout(tid);
-            tid = setTimeout(setUnitA, 300);
+            tid = setTimeout(refreshRem, 300);
         }
     }, false);
 
@@ -85,5 +93,24 @@
         }, false);
     }
     
-    setUnitA();
-})(window);
+
+    refreshRem();
+
+    flexible.dpr = win.dpr = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function(d) {
+        var val = parseFloat(d) * this.rem;
+        if (typeof d === 'string' && d.match(/rem$/)) {
+            val += 'px';
+        }
+        return val;
+    }
+    flexible.px2rem = function(d) {
+        var val = parseFloat(d) / this.rem;
+        if (typeof d === 'string' && d.match(/px$/)) {
+            val += 'rem';
+        }
+        return val;
+    }
+
+})(window, window['lib'] || (window['lib'] = {}));

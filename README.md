@@ -1,93 +1,49 @@
 #lib.flexible
 
-含reset、grid、rem基准计算、全局字体等
+移动端自适应方案
 
 ## 最新版本
 
 **0.3.0**
 
-## 安装依赖
+## 用Grunt打包
 
 运行 `npm install`，来安装所需的依赖模块。关于NPM的知识，请参见[nodejs](http://nodejs.org/);
 
-## 用Grunt打包
-
 运行 `grunt`，来对项目进行打包。关于Grunt的知识，请参见[gruntjs](http://gruntjs.com/);
 
-## 栅格系统
-![](http://gtms01.alicdn.com/tps/i1/T16vvjFMVXXXcxUGDM-687-343.png)
+## 依赖库
 
-栅格系统不管设备的物理宽度和分辨率，将整个屏幕均为160份，即总宽度160a（[故a为总宽度的160分之一](http://gitlab.alibaba-inc.com/mtb/lib-tbm/wikis/unit-a)），在此之上应用12列栅格而来；宽640时，a=4px，1a=0.1rem，1rem=40px
+无
 
+完整引用举例：
 
-### 栅格使用方法
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/??flexible_css.js,flexible.js"></script>
 
-#### 第一步：引入flexible.css和flexible.js
-    
-    <!-- 第一步：引入flexible.css含reset/grid/global三部分 -->
-    <!-- css和flexible.js为单位rem的计算-->
-    <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.js"></script>
-    <link href="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.css" rel="styleSheet" type="text/css"/>
-    
+## 使用方法
 
-#### 第二步：根据视觉设计，选择栅格
+建议对于js做`内敛处理`，在**所有资源加载之前**执行这个js。
 
-选择其中一种grid/grid-thin/grid-fat，它们定义的槽宽列宽不一样，以适应不同产品的不同模块，一般为[grid]
-![](http://gtms02.alicdn.com/tps/i2/T1IJq.FPlbXXbk1_b6-471-42.png)
-如选择grid三栏布局，一栏跨4列，则由3个col-4组成。
+执行这个js后，会在`html`（也就是document.documentElement）上增加一个`data-dpr`属性，以及`font-size`样式。
 
-    <!-- .col-*的父节点要为.grid* -->
-    <div class="grid">
-        <div class="col-4"></div>
-        <div class="col-4"></div>
-        <div class="col-4"></div>
-    </div>
+之后页面中的元素，都可以用rem单位来设置。`html`上的`font-size`就是rem的基准像素。
 
-![](http://gtms03.alicdn.com/tps/i3/T1qP6dFS8XXXbhtPf9-479-45.png)
-如选择grid-thin两栏布局，一栏跨6列，则由2个col-6组成。
+## 把视觉稿中的px转换成rem
 
-    <div class="grid-thin">
-        <div class="col-6"></div>
-        <div class="col-6"></div>
-    </div>
+首先，目前视觉稿大小分为`640`，`750`以及，`1125`这三种。
 
-![](http://gtms02.alicdn.com/tps/i2/TB1_b6iFFXXXXaPXXXXR7aVSVXX-455-40.png)
-如选择grid-fat四栏布局，一栏跨3列，则由4个col-3组成。
+当前方案会把这3类视觉稿分成`100份`来看待（为了以后兼容vh，vw单位）。每一份被称为一个单位a。同时，1rem单位认定为10a。拿750的视觉稿举例：
 
-    <div class="grid-fat">
-        <div class="col-3"></div>
-        <div class="col-3"></div>
-        <div class="col-3"></div>
-        <div class="col-3"></div>
-    </div>
+    1a = 7.5px
+    1rem = 75px
 
-
-
-## 视觉单位a使用方法
-
-把屏幕宽度的160分之一作为单位标记宽度等信息，每一份相当于0.1rem，如：
-![](http://gtms02.alicdn.com/tps/i2/T1QyYjFPNXXXbAvxbX-665-131.png)
-
-大致实现如下：
-
-    <div class="grid-fat">
-        <div class="col-6"><div class="list">列表</div></div>
-        <div class="col-6"><div class="info">信息</div></div>
-    </div>
-    <style>
-    .list {
-        padding-left: 0.2rem
-    }
-    .info {
-        padding-right: 0.2rem;
-    }
-    </style>
+因此，对于视觉稿上的元素的尺寸换算，只需要`原始px值`除以`rem基准px值`即可。例如240px * 120px的元素，最后转换为3.2rem * 1.6rem。
 
 ## 字体不使用rem的方法
 
-在html上会有一个属性`data-dpr`，值为当前网页的dpr实际值，包括1和2。
+字体的大小不推荐用rem作为单位。所以对于字体的设置，仍旧使用px作为单位，并配合用`data-dpr`属性来区分不同dpr下的的大小。
 
-字体的大小不能用rem作为单位，仍旧采用px为单位。所以对于字体的设置，需要用data-dpr属性来区分不同dpr的大小。例如：
+例如：
 
     div {
         width: 1rem; 
@@ -99,19 +55,96 @@
         font-size: 24px;
     }
 
-## 常见疑问
+    [data-dpr="3"] div {
+        font-size: 36px;
+    }
 
-### 如何手动配置dpr
+### 手动配置dpr
 
-只需要在引入`flexible.js`之前，输出meta标签即可，例如：
+引入执行js之前，可以通过输出meta标签方式来手动设置dpr。语法如下：
 
-<meta name="flexible" content="initial-dpr=2" />
-<script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/flexible.js"></script>
+    <meta name="flexible" content="initial-dpr=2,maximum-dpr=3" />
 
-### 强制设置rem单位的方法
+其中`initial-dpr`会把dpr强制设置为给定的值，`maximum-dpr`会比较系统的dpr和给定的dpr，取最小值。**注意：这两个参数只能选其一。**
 
-输出css样式
+### 手动设置rem基准值的方法
+
+输出如下css样式即可：
 
     html {font-size: 60px!important;}
 
-即可
+### 一些常用APIs
+
+**[Number] lib.flexible.dpr**
+
+当前页面的dpr值
+
+**[Number] lib.flexible.rem** 
+
+当前页面的rem基准值
+
+**[Number|String] lib.flexible.rem2px([Number|String digital])**
+
+把rem转换为px
+
+**[Number|String] lib.flexible.px2rem([Number|String digital])** 
+
+把px转换为rem
+
+**lib.flexible.refreshRem()** 
+
+刷新当前页面的rem基准值
+
+## 栅格系统
+
+### 需引入makegrid.js
+   
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{version}}/makegrid.js"></script>
+
+### 使用方法
+
+    lib.flexible.makeGrid(params)
+
+- [Object params]
+    - designWidth - 设计稿宽度
+    - designUnit - 设计稿最小单位a（以px为单位）
+    - columnCount - 栅格列数
+    - columnXUnit - 栅格列宽（以a为单位）
+    - gutterXUnit - 栅格间距（以a为单位）
+    - edgeXUnit - 页面左右边距（以a为单位）
+    - className - 栅格样式的名称（可省略，默认为grid）
+
+通过传入视觉的栅格规范定义，可以输出对应的css样式。
+
+    lib.flexible.makeGridMode(modeName)
+
+- [String modeName]
+
+方案还预置了几个默认的栅格规范，分别是`750-12`，`750-6`，`640-12`，`640-6`。
+
+### 利用meta输出栅格样式
+
+    <meta content="designWidth=750, desginUnit=6, columnCount=12, columnXUnit=7, gutterXUnit=3, edgeXUnit=4" name="grid" />
+
+或
+
+    <meta content="modeName=750-12" name="grid" />
+
+### 栅格代码举例
+
+    <div class="grid">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-6"></div>
+        <div class="col-6"></div>
+    </div>
+
+    <div class="grid">
+        <div class="col-3"></div>
+        <div class="col-4"></div>
+        <div class="col-5"></div>
+    </div>

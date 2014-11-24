@@ -1,34 +1,8 @@
-/* 
- * 如果不加overflow-y:scroll，js获取document宽度的160分一（body的font-size/rem的参照值），
- * document的宽度获取的时间非常早，页面还未渲染，获取到的宽度不包含滚动条，等有滚动条时rem已经计算好了，
- * 滚动条占据一定的宽度导致body宽度变小，导致栅格宽度大于body宽度，进而导致栅格换行
- * 移动端上不会有以上问题，因为滚动条tap时才出现，但加overflow-y:scroll对移动端也没有影响。 
- */
-html {
-  overflow-y: scroll;
-}
-html,
-body {
-  font-family: sans-serif;
-}
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-/* 隐藏, 通常用来与 JS 配合 */
-.fn-hide {
-  display: none;
-}
 @charset "utf-8";
-/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
-/* ref: http://www.zhihu.com/question/21093147/answer/17158909 */
 html {
   color: #000;
   background: #fff;
+  overflow-y: scroll;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -36,6 +10,10 @@ html * {
   outline: none;
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html,
+body {
+  font-family: sans-serif;
 }
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body,

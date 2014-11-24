@@ -29,6 +29,11 @@ module.exports = function(grunt) {
             main: {
                 src: ['<%= srcPath %>/<%= name %>.js'],
                 dest: '<%= distPath %>/<%= name %>.debug.js'
+            },
+
+            makegrid: {
+                src: ['<%= srcPath %>/makegrid.js'],
+                dest: '<%= distPath %>/makegrid.debug.js'
             }
         },
 
@@ -58,18 +63,6 @@ module.exports = function(grunt) {
                     dest: '<%= distPath %>',
                     ext: '.debug.css'
                 }]
-            },
-
-            grid: {
-                files: {
-                    '<%= distPath%>/grid.debug.css': ['<%= assetsPath%>/grid.less']
-                }
-            },
-
-            fonts: {
-                files: {
-                    '<%= distPath%>/fonts.debug.css': ['<%= assetsPath%>/fonts.less']
-                }
             }
         },
 
