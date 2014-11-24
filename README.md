@@ -148,3 +148,8 @@
         <div class="col-4"></div>
         <div class="col-5"></div>
     </div>
+
+
+### 四类栅格在不同手机上的表现
+
+![栅格](grid.jpg);
