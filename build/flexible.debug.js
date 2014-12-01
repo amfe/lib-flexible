@@ -12,7 +12,7 @@
         console.warn('将根据已有的meta标签来设置缩放比例');
         var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
         if (match) {
-            scale = parseFloat(match[2]);
+            scale = parseFloat(match[1]);
             dpr = parseInt(1 / scale);
         }
     } else if (flexibleEl) {
@@ -21,11 +21,11 @@
             var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
             var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
             if (initialDpr) {
-                dpr = parseFloat(initialDpr[2]);
+                dpr = parseFloat(initialDpr[1]);
                 scale = parseFloat((1 / dpr).toFixed(2));    
             }
             if (maximumDpr) {
-                dpr = parseFloat(maximumDpr[2]);
+                dpr = parseFloat(maximumDpr[1]);
             }
         }
     }
