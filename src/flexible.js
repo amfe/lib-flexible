@@ -26,6 +26,7 @@
             }
             if (maximumDpr) {
                 dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
             }
         }
     }
