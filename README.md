@@ -1,6 +1,6 @@
 #lib.flexible
 
-移动端自适应方案
+移动端自适应方案，相关文章请参考[此处](https://github.com/amfe/article/issues/17)
 
 ## Update【2016年01月13日】
 
@@ -161,6 +161,6 @@
 
 ### 四类栅格在不同手机上的表现
 
-![栅格](grid.jpg);
+![栅格](grid.jpg)
 
 
