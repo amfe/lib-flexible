@@ -15,7 +15,7 @@
             scale = parseFloat(match[1]);
             dpr = parseInt(1 / scale);
         }
-    } else if (flexibleEl) {
+    } else if (flexibleEl)  {
         var content = flexibleEl.getAttribute('content');
         if (content) {
             var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
@@ -37,9 +37,9 @@
         var devicePixelRatio = win.devicePixelRatio;
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+            if (devicePixelRatio >= 3) {                
                 dpr = 3;
-            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+            } else if (devicePixelRatio >= 2) {
                 dpr = 2;
             } else {
                 dpr = 1;
