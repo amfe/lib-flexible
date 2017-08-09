@@ -22,8 +22,12 @@
       "email": "mingelz@github.com"
     }
   ],
-  "scripts": {},
+  "scripts": {
+    "compress": "uglifyjs index.js -o index.min.js -c -m"
+  },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "uglify-js": "^3.0.27"
+  },
   "license": "MIT"
 }
