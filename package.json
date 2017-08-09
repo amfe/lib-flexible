@@ -1,0 +1,29 @@
+{
+  "name": "amfe-flexible",
+  "version": "2.0.0",
+  "description": "Build flexible page on mobile platform",
+  "keywords": [
+    "lib",
+    "amfe",
+    "flexible",
+    "mobile",
+    "css",
+    "rem",
+    "vw"
+  ],
+  "homepage": "https://github.com/amfe/lib-flexible",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:amfe/lib-flexible.git"
+  },
+  "author": [
+    {
+      "name": "mingelz",
+      "email": "mingelz@github.com"
+    }
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT"
+}
