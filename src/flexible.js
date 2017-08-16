@@ -4,15 +4,16 @@
     var metaEl = doc.querySelector('meta[name="viewport"]');
     var flexibleEl = doc.querySelector('meta[name="flexible"]');
     var dpr = 0;
-    var scale = 0;
+    var scale = initialScale = 0;
     var tid;
     var flexible = lib.flexible || (lib.flexible = {});
+    var devicePixelRatio = win.devicePixelRatio;
     
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');
         var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
         if (match) {
-            scale = parseFloat(match[1]);
+            scale = initialScale = parseFloat(match[1]);
             dpr = parseInt(1 / scale);
         }
     } else if (flexibleEl) {
@@ -22,6 +23,9 @@
             var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
             if (initialDpr) {
                 dpr = parseFloat(initialDpr[1]);
+                if (devicePixelRatio < dpr) {
+                  dpr = devicePixelRatio;
+                }
                 scale = parseFloat((1 / dpr).toFixed(2));    
             }
             if (maximumDpr) {
@@ -31,7 +35,7 @@
         }
     }
 
-    if (!dpr && !scale) {
+    if (!dpr || !scale) {
         var isAndroid = win.navigator.appVersion.match(/android/gi);
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
         var devicePixelRatio = win.devicePixelRatio;
@@ -52,9 +56,11 @@
     }
 
     docEl.setAttribute('data-dpr', dpr);
-    if (!metaEl) {
-        metaEl = doc.createElement('meta');
-        metaEl.setAttribute('name', 'viewport');
+    if (!initialScale) {
+        if (!metaEl) {
+            metaEl = doc.createElement('meta');
+            metaEl.setAttribute('name', 'viewport');
+        }
         metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
         if (docEl.firstElementChild) {
             docEl.firstElementChild.appendChild(metaEl);
@@ -64,6 +70,7 @@
             doc.write(wrap.innerHTML);
         }
     }
+    
 
     function refreshRem(){
         var width = docEl.getBoundingClientRect().width;
