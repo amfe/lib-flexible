@@ -3,6 +3,8 @@
     var docEl = doc.documentElement;
     var metaEl = doc.querySelector('meta[name="viewport"]');
     var flexibleEl = doc.querySelector('meta[name="flexible"]');
+    var maxWidthEl = doc.querySelector('meta[name="max-width"]');
+    var maxWidth = 540;
     var dpr = 0;
     var scale = 0;
     var tid;
@@ -28,6 +30,13 @@
                 dpr = parseFloat(maximumDpr[1]);
                 scale = parseFloat((1 / dpr).toFixed(2));    
             }
+        }
+    }
+
+    if (maxWidthEl) {
+        var maxWidthContent = maxWidthEl.getAttribute('content');
+        if (maxWidthContent) {
+            maxWidth = parseInt(maxWidthContent);
         }
     }
 
@@ -67,8 +76,8 @@
 
     function refreshRem(){
         var width = docEl.getBoundingClientRect().width;
-        if (width / dpr > 540) {
-            width = 540 * dpr;
+        if (width / dpr > maxWidth) {
+            width = maxWidth * dpr;
         }
         var rem = width / 10;
         docEl.style.fontSize = rem + 'px';
