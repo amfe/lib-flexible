@@ -72,6 +72,11 @@
         }
         var rem = width / 10;
         docEl.style.fontSize = rem + 'px';
+        var realitySize = parseInt(window.getComputedStyle(document.documentElement).fontSize);
+        if (rem !== realitySize) {
+            rem = rem * rem / realitySize;
+            docEl.style.fontSize = rem + 'px';
+        }
         flexible.rem = win.rem = rem;
     }
 
