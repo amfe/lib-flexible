@@ -1,3 +1,7 @@
+# Update
+
+**如果你觉得移动端适配让人头疼，建议采用最新适配方案：[https://www.w3cplus.com/css/vw-for-layout.html](https://www.w3cplus.com/css/vw-for-layout.html)**
+
 #lib.flexible
 
 移动端自适应方案，相关文章请参考[此处](https://github.com/amfe/article/issues/17)
