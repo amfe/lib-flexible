@@ -1,5 +1,7 @@
 # amfe-flexible
 
+[Classic edition (0.3.2)](https://github.com/amfe/lib-flexible/tree/master)
+
 ## Usage
 
 #### Install

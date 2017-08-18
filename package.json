@@ -1,6 +1,6 @@
 {
   "name": "amfe-flexible",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Build flexible page on mobile platform",
   "keywords": [
     "lib",
@@ -19,7 +19,7 @@
   "author": [
     {
       "name": "mingelz",
-      "email": "mingelz@github.com"
+      "email": "mingelz@gmail.com"
     }
   ],
   "scripts": {
