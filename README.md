@@ -128,7 +128,7 @@
 
 ### 利用meta输出栅格样式
 
-    <meta content="designWidth=750, desginUnit=6, columnCount=12, columnXUnit=7, gutterXUnit=3, edgeXUnit=4" name="grid" />
+    <meta content="designWidth=750, designUnit=6, columnCount=12, columnXUnit=7, gutterXUnit=3, edgeXUnit=4" name="grid" />
 
 或
 
