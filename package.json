@@ -9,7 +9,8 @@
     "mobile",
     "css",
     "rem",
-    "vw"
+    "vw",
+    "esm"
   ],
   "homepage": "https://github.com/amfe/lib-flexible",
   "repository": {
@@ -36,8 +37,9 @@
     "compress": "uglifyjs index.js -o index.min.js -c -m",
     "build": "tsup src/index.ts --format iife,esm --minify --dts --sourcemap --out-dir dist --legacy-output"
   },
-  "dependencies": {},
   "devDependencies": {
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
     "uglify-js": "^3.0.27"
   },
   "license": "MIT"
