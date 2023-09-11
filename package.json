@@ -16,14 +16,25 @@
     "type": "git",
     "url": "git@github.com:amfe/lib-flexible.git"
   },
-  "author": [
-    {
-      "name": "mingelz",
-      "email": "mingelz@gmail.com"
-    }
+  "author": [{
+    "name": "mingelz",
+    "email": "mingelz@gmail.com"
+  }],
+  "main": "dist/iife/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/iife/index.js"
+    }
+  },
   "scripts": {
-    "compress": "uglifyjs index.js -o index.min.js -c -m"
+    "compress": "uglifyjs index.js -o index.min.js -c -m",
+    "build": "tsup src/index.ts --format iife,esm --minify --dts --sourcemap --out-dir dist --legacy-output"
   },
   "dependencies": {},
   "devDependencies": {
